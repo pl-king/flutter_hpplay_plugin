@@ -1,0 +1,52 @@
+group 'com.mxiaotu.flutter_plugin_newhpplay'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+//    lintOptions {
+//        disable 'InvalidPackage'
+//    }
+    lintOptions {
+        abortOnError false
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'   // aar目录
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation(name: 'lelink', ext: 'aar')
+    implementation(name: 'zxing-1.0.2', ext: 'aar')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
+
+}
